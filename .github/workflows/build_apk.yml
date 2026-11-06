@@ -14,7 +14,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
+          distribution: 'zulu'
           java-version: '17'
 
       - name: Set up Flutter
@@ -27,15 +27,11 @@ jobs:
         run: flutter pub get
         working-directory: ./flutter_app
 
-      - name: Make Gradle executable
-        run: chmod +x android/gradlew
-        working-directory: ./flutter_app
-
-      - name: Build APK Release
+      - name: Build APK
         run: flutter build apk --release
         working-directory: ./flutter_app
 
-      - name: Upload APK Artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: medical-ai-apk
