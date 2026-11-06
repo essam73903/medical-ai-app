@@ -22,14 +22,17 @@ jobs:
         with:
           flutter-version: '3.19.0'
           channel: 'stable'
-          cache: true
 
       - name: Install Dependencies
         run: flutter pub get
         working-directory: ./flutter_app
 
+      - name: Make Gradle executable
+        run: chmod +x android/gradlew
+        working-directory: ./flutter_app
+
       - name: Build APK Release
-        run: flutter build apk --release --no-pub
+        run: flutter build apk --release
         working-directory: ./flutter_app
 
       - name: Upload APK Artifact
